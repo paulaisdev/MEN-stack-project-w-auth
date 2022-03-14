@@ -12,7 +12,6 @@ const getAll = async (req, res) => {
     }
 }
 
-// criar método para cadastrar uma nota 
 const createUser = async (req, res) => {
     try {
         const newUser = new UserSchema({
@@ -24,8 +23,8 @@ const createUser = async (req, res) => {
 
         const savedUser = await newUser.save()
         res.status(200).json({
-            message: "Nota adicionada com sucesso! (:",
-            newUser
+            message: "User adicionado com sucesso!",
+            savedUser
         })
     } catch (error) {
         res.status(500).json({
@@ -34,7 +33,6 @@ const createUser = async (req, res) => {
     }
 }
 
-// criar método para atualizar informações de uma nota
 const updateUserById = async (req, res) => {
     try {
         const findUser = await UserSchema.findById(req.params.id)
