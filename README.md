@@ -40,7 +40,7 @@ Segue as orientações:
 Dentro do arquivo `.env`ficará:
 
 ```SECRET=chave_rsa_aqui_sem_aspas
-   MONGODB_URL= "mongodb://localhost:27017/reprograma"
+   MONGODB_URL= "mongodb://localhost:27017/databaseName"
 ```
 
 Na String de conexão no arquivo database.js, ficará:
@@ -92,7 +92,7 @@ Vamos lá!
     }
 ```
 -----------------------------------------------------------------------------------------------
-### Criar rota para criar usuárias
+### Criar rota para criação de users
 
 1. Criar rota para criar usuária em usuariasRoute.js
 `$ router.post('/', controller.create);`
@@ -104,7 +104,7 @@ Vamos lá!
 4. Criar uma usuaria de teste via Postman
 
 -----------------------------------------------------------------------------------------------
-### Criptografar senha das usuárias
+### Criptografar senha dos users
 
 1. Instalar bcrypt
 `$ npm install bcrypt`
