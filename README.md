@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 # On14-TodasEmTech-s13-PG-III
 Turma Online 14 - Back-end | Projeto Guiado CRUD
+=======
+>>>>>>> 5bfe75749a6f09826637cb9e794c212f01181235
 ### Vamos preparar o ambiente!
 
 Para executar este projeto, você deverá ter instalado o Node.js e as dependências do npm. Será necessário ter instalado o banco de dados Mongodb e suas configurações. Além disso, iremos fazer requisições na API com a plataforma Postman.
@@ -42,7 +45,11 @@ Segue as orientações:
 Dentro do arquivo `.env`ficará:
 
 ```SECRET=chave_rsa_aqui_sem_aspas
+<<<<<<< HEAD
    MONGODB_URL= "mongodb://localhost:27017/reprograma"
+=======
+   MONGODB_URL= "mongodb://localhost:27017/databaseName"
+>>>>>>> 5bfe75749a6f09826637cb9e794c212f01181235
 ```
 
 Na String de conexão no arquivo database.js, ficará:
@@ -94,7 +101,7 @@ Vamos lá!
     }
 ```
 -----------------------------------------------------------------------------------------------
-### Criar rota para criar usuárias
+### Criar rota para criação de users
 
 1. Criar rota para criar usuária em usuariasRoute.js
 `$ router.post('/', controller.create);`
@@ -106,7 +113,7 @@ Vamos lá!
 4. Criar uma usuaria de teste via Postman
 
 -----------------------------------------------------------------------------------------------
-### Criptografar senha das usuárias
+### Criptografar senha dos users
 
 1. Instalar bcrypt
 `$ npm install bcrypt`
