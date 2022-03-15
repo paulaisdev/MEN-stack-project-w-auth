@@ -8,14 +8,15 @@ Após clonar o projeto, execute o comando abaixo:
 
 ## API com Node.js e Express
 
--------------------------------
+A API segue o padrão MVC, com arquivos de configuração como .gitignore e .env. Pacotes utilizados: `cors`, `dotenv-safe`, `express`, `mongoose` e `nodemon`.
+
+Estrutura do projeto: 
+![Estrutura API com MEN stack](https://drive.google.com/file/d/1x4QTklg7xeOge3vTDiBQlYGvIyCKAKYe/view?usp=sharing)
 
 
 ## Autenticação
 
--------------------------------
-
-Este projeto já possui rotas organizadas e integração com o banco de dados, conforme aula desenvolvida na s14. O próximo passo agora é criar o processo de autenticação.
+Este projeto já possui rotas organizadas e integração com o banco de dados. O próximo passo agora é criar o processo de autenticação (para conferir FLUXO de autenticação, vá até o final do README).
 
 Segue as orientações:
 
@@ -39,18 +40,21 @@ Segue as orientações:
 
 Dentro do arquivo `.env`ficará:
 
-```SECRET=chave_rsa_aqui_sem_aspas
-   MONGODB_URL= "mongodb://localhost:27017/databaseName"
+```
+SECRET=chave_rsa_aqui_sem_aspas
+MONGODB_URL= "mongodb://localhost:27017/databaseName"
+
 ```
 
 Na String de conexão no arquivo database.js, ficará:
 
-```//String de conexão
+~~~javascript
+//String de conexão
 mongoose.connect(process.env.MONGODB_URL,  {
-     useNewUrlParser: true,
-     useUnifiedTopology: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
-```
+~~~
 
 7. Criar variável contendo a SECRET em estudioController.js
 `$ const secret = process.env.SECRET`
@@ -60,7 +64,7 @@ mongoose.connect(process.env.MONGODB_URL,  {
 9. Pegar o header de autorização e enviar uma mensagem de erro 401 quando vir vazio
 `$ const authHeader = request.get('authorization');`
 
-```
+~~~javascript
 const getAll = async (req, res) => {
   const authHeader = req.get('authorization')
   const token = authHeader.split(' ')[1];
@@ -74,10 +78,9 @@ const getAll = async (req, res) => {
       res.status(500).send({ message: err.message })
     }
       res.status(200).send(users)
-    }) 
+  }) 
 }
-
-```
+~~~
 
 10. Passar bearer token no header de autenticação via Postman
 `$ Bearer TOKEN_JWT_AQUI`
@@ -89,14 +92,13 @@ Antes de tudo, precisamos importar a biblioteca jwt no controller
 `$ const jwt = require('jsonwebtoken');`
 
 Agora sim, podemos aplicar o método verify e verificar se tudo está pegando corretamente. 
-Vamos lá!
-```
-  jwt.verify(token, SECRET, function(erro) {
-    if (err) {
-      return res.status(403).send('Não autorizado');
-    }
 
-```
+~~~javascript
+jwt.verify(token, SECRET, function(erro) {
+  if (err) {
+    return res.status(403).send('Não autorizado');
+}
+~~~
 -----------------------------------------------------------------------------------------------
 ### Criar rota para criação de users
 
@@ -142,3 +144,19 @@ Vamos lá!
 `$ jwt.sign({ name: user.name }, SECRET);`
 
 6. Bater na rota `getAll` via Postman com o token gerado
+
+-----------------------------------------------------------------------------------------------
+### Fluxo autenticação
+
+🚩 **Criação de usuária**
+Uma usuária é criada e sua senha é armazenada como um hash (usando o bcrypt)
+
+🚩 **Login da usuária**
+Na request de login, no body da request são enviados os dados necessários para autenticação (email e senha, por exemplo)
+
+🚩 **Autenticação da usuária**
+A senha é verificada com a do banco, se for igual, um token é gerado como resposta à requisição. No front, esse token é armazenado
+
+🚩 **Autorização de visualização**
+Com o login realizado, a cada nova requisição o token é enviado no body da requisição permitindo a autorização de visualização
+
