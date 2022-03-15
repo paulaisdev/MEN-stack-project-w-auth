@@ -68,10 +68,15 @@ const getAll = async (req, res) => {
   if (!token) {
     return res.status(401).send("Erro no header")
   }
-
-  const estudios = await Estudio.find()
-  res.status(200).send(estudios)
+    
+  UserSchema.find(function (err, users) {
+    if(err) {
+      res.status(500).send({ message: err.message })
+    }
+      res.status(200).send(users)
+    }) 
 }
+
 ```
 
 10. Passar bearer token no header de autenticação via Postman
@@ -87,21 +92,22 @@ Agora sim, podemos aplicar o método verify e verificar se tudo está pegando co
 Vamos lá!
 ```
   jwt.verify(token, SECRET, function(erro) {
-    if (erro) {
+    if (err) {
       return res.status(403).send('Não autorizado');
     }
+
 ```
 -----------------------------------------------------------------------------------------------
 ### Criar rota para criação de users
 
-1. Criar rota para criar usuária em usuariasRoute.js
+1. Criar rota para criar user em userRoute.js
 `$ router.post('/', controller.create);`
 
-2. Criar model de usuarias com id, nome, email e senha
+2. Criar model de users com id, nome, email e senha
 
-3. Criar método no controller para criar usuaria
+3. Criar método no controller para criar users
 
-4. Criar uma usuaria de teste via Postman
+4. Criar um user de teste via Postman
 
 -----------------------------------------------------------------------------------------------
 ### Criptografar senha dos users
@@ -109,30 +115,30 @@ Vamos lá!
 1. Instalar bcrypt
 `$ npm install bcrypt`
 
-2. Fazer require do bcrypt no `usuariasController.js`
+2. Fazer require do bcrypt no `usersController.js`
 `$ const bcrypt = require('bcryptjs');`
 
 3. Gerar hash com senha recebida no body da request
 `$ bcrypt.hashSync(request.body.senha, 10);`
 
-4. Criar nova usuária no banco com a senha hasherizada e o login (email) recebido no body da request
+4. Criar novo user no banco com a senha hasherizada e o login (email) recebido no body da request
 
 -----------------------------------------------------------------------------------------------
 ### Criar rota de login
 
-1. Criar rota de login em `usuariasRoute.js`
+1. Criar rota de login em `userRoute.js`
 `$ router.post('/login', controller.login);`
 
-2. Buscar usuária a partir do email recebido na request, e mostrar um erro 404 caso não encontre
-`$ Usuarias.findOne({ email: req.body.email }, function(error, usuaria) {...}`
+2. Buscar user a partir do email recebido na request, e mostrar um erro 404 caso não encontre
+`$ userSchema.findOne({ email: req.body.email }, function(error, user) {...}`
 
-3. Comparar senha de usuária encontra com a senha recebida via request, e mostrar um erro 401 caso seja diferente
-`$ bcrypt.compareSync(request.body.senha, usuariaEncontrada.senha);`
+3. Comparar senha de user encontra com a senha recebida via request, e mostrar um erro 401 caso seja diferente
+`$ bcrypt.compareSync(request.body.senha, userFound.senha);`
 
 4. Fazer require do plugin JWT
 `$ const jwt = require('jsonwebtoken');`
 
 5. Importar SECRET e gerar token JWT a partir do nome e secret e devolver na request
-`$ jwt.sign({ name: usuaria.name }, SECRET);`
+`$ jwt.sign({ name: user.name }, SECRET);`
 
 6. Bater na rota `getAll` via Postman com o token gerado
