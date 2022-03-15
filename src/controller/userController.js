@@ -16,12 +16,13 @@ const createUser = async (req, res) => {
     try {
         const newUser = new UserSchema({
             _id: new mongoose.Types.ObjectId(),
-            name: req.body.author,
-            email: req.body.title,
+            name: req.body.name,
+            email: req.body.email,
             createdAt: new Date()
         })
 
         const savedUser = await newUser.save()
+        
         res.status(200).json({
             message: "User adicionado com sucesso!",
             savedUser
@@ -36,7 +37,6 @@ const createUser = async (req, res) => {
 const updateUserById = async (req, res) => {
     try {
         const findUser = await UserSchema.findById(req.params.id)
-        console.log(findUser)
 
         if (findUser) {            
             findUser.name = req.body.name || findUser.name
@@ -62,7 +62,7 @@ const deleteUserById = async (req, res) => {
        await userFound.delete()
 
        res.status(200).json({
-           mensagem: `Usuário '${userFound.email}' deletada com sucesso!`
+           mensagem: `Usuário '${userFound.email}' deletado com sucesso!`
        })
 
     } catch (err) {
