@@ -10,12 +10,16 @@ Após clonar o projeto, execute o comando abaixo:
 
 -------------------------------
 
+A API segue o padrão MVC, com arquivos de configuração como .gitignore e .env. Pacotes utilizados: `cors`, `dotenv-safe`, `express`, `mongoose` e `nodemon`.
+
+Estrutura do projeto: 
+
 
 ## Autenticação
 
 -------------------------------
 
-Este projeto já possui rotas organizadas e integração com o banco de dados, conforme aula desenvolvida na s14. O próximo passo agora é criar o processo de autenticação.
+Este projeto já possui rotas organizadas e integração com o banco de dados. O próximo passo agora é criar o processo de autenticação (para conferir FLUXO de autenticação, vá até o final do README).
 
 Segue as orientações:
 
@@ -142,3 +146,19 @@ Vamos lá!
 `$ jwt.sign({ name: user.name }, SECRET);`
 
 6. Bater na rota `getAll` via Postman com o token gerado
+
+-----------------------------------------------------------------------------------------------
+### Fluxo autenticação
+
+🚩 **Criação de usuária**
+Uma usuária é criada e sua senha é armazenada como um hash (usando o bcrypt)
+
+🚩 **Login da usuária**
+Na request de login, no body da request são enviados os dados necessários para autenticação (email e senha, por exemplo)
+
+🚩 **Autenticação da usuária**
+A senha é verificada com a do banco, se for igual, um token é gerado como resposta à requisição. No front, esse token é armazenado
+
+🚩 **Autorização de visualização**
+Com o login realizado, a cada nova requisição o token é enviado no body da requisição permitindo a autorização de visualização
+
