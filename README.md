@@ -13,7 +13,8 @@ Após clonar o projeto, execute o comando abaixo:
 A API segue o padrão MVC, com arquivos de configuração como .gitignore e .env. Pacotes utilizados: `cors`, `dotenv-safe`, `express`, `mongoose` e `nodemon`.
 
 Estrutura do projeto: 
-![Estrutura API com MEN stack](https://drive.google.com/file/d/1x4QTklg7xeOge3vTDiBQlYGvIyCKAKYe/view?usp=sharing)
+![Estrutura API com MEN stack](https://drive.google.com/file/d/1x4QTklg7xeOge3vTDiBQlYGvIyCKAKYe)
+
 
 ## Autenticação
 
@@ -43,18 +44,22 @@ Segue as orientações:
 
 Dentro do arquivo `.env`ficará:
 
+~~~javascript
 ```SECRET=chave_rsa_aqui_sem_aspas
    MONGODB_URL= "mongodb://localhost:27017/databaseName"
 ```
+~~~
 
 Na String de conexão no arquivo database.js, ficará:
 
+~~~javascript
 ```//String de conexão
 mongoose.connect(process.env.MONGODB_URL,  {
      useNewUrlParser: true,
      useUnifiedTopology: true
 });
 ```
+~~~
 
 7. Criar variável contendo a SECRET em estudioController.js
 `$ const secret = process.env.SECRET`
@@ -64,6 +69,7 @@ mongoose.connect(process.env.MONGODB_URL,  {
 9. Pegar o header de autorização e enviar uma mensagem de erro 401 quando vir vazio
 `$ const authHeader = request.get('authorization');`
 
+~~~javascript
 ```
 const getAll = async (req, res) => {
   const authHeader = req.get('authorization')
@@ -82,6 +88,7 @@ const getAll = async (req, res) => {
 }
 
 ```
+~~~
 
 10. Passar bearer token no header de autenticação via Postman
 `$ Bearer TOKEN_JWT_AQUI`
@@ -93,7 +100,8 @@ Antes de tudo, precisamos importar a biblioteca jwt no controller
 `$ const jwt = require('jsonwebtoken');`
 
 Agora sim, podemos aplicar o método verify e verificar se tudo está pegando corretamente. 
-Vamos lá!
+
+~~~javascript
 ```
   jwt.verify(token, SECRET, function(erro) {
     if (err) {
@@ -101,6 +109,7 @@ Vamos lá!
     }
 
 ```
+~~~
 -----------------------------------------------------------------------------------------------
 ### Criar rota para criação de users
 
