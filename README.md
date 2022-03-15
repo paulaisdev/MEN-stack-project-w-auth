@@ -13,7 +13,7 @@ Após clonar o projeto, execute o comando abaixo:
 A API segue o padrão MVC, com arquivos de configuração como .gitignore e .env. Pacotes utilizados: `cors`, `dotenv-safe`, `express`, `mongoose` e `nodemon`.
 
 Estrutura do projeto: 
-![Estrutura API com MEN stack](https://drive.google.com/file/d/1x4QTklg7xeOge3vTDiBQlYGvIyCKAKYe)
+![Estrutura API com MEN stack](https://drive.google.com/file/d/1x4QTklg7xeOge3vTDiBQlYGvIyCKAKYe/view?usp=sharing)
 
 
 ## Autenticação
@@ -44,21 +44,20 @@ Segue as orientações:
 
 Dentro do arquivo `.env`ficará:
 
-~~~javascript
-```SECRET=chave_rsa_aqui_sem_aspas
-   MONGODB_URL= "mongodb://localhost:27017/databaseName"
 ```
-~~~
+SECRET=chave_rsa_aqui_sem_aspas
+MONGODB_URL= "mongodb://localhost:27017/databaseName"
+
+```
 
 Na String de conexão no arquivo database.js, ficará:
 
 ~~~javascript
-```//String de conexão
+//String de conexão
 mongoose.connect(process.env.MONGODB_URL,  {
-     useNewUrlParser: true,
-     useUnifiedTopology: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
-```
 ~~~
 
 7. Criar variável contendo a SECRET em estudioController.js
@@ -70,7 +69,6 @@ mongoose.connect(process.env.MONGODB_URL,  {
 `$ const authHeader = request.get('authorization');`
 
 ~~~javascript
-```
 const getAll = async (req, res) => {
   const authHeader = req.get('authorization')
   const token = authHeader.split(' ')[1];
@@ -86,8 +84,6 @@ const getAll = async (req, res) => {
       res.status(200).send(users)
     }) 
 }
-
-```
 ~~~
 
 10. Passar bearer token no header de autenticação via Postman
@@ -102,13 +98,10 @@ Antes de tudo, precisamos importar a biblioteca jwt no controller
 Agora sim, podemos aplicar o método verify e verificar se tudo está pegando corretamente. 
 
 ~~~javascript
-```
-  jwt.verify(token, SECRET, function(erro) {
-    if (err) {
-      return res.status(403).send('Não autorizado');
-    }
-
-```
+jwt.verify(token, SECRET, function(erro) {
+  if (err) {
+    return res.status(403).send('Não autorizado');
+  }
 ~~~
 -----------------------------------------------------------------------------------------------
 ### Criar rota para criação de users
