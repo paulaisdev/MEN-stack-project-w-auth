@@ -13,7 +13,7 @@ Após clonar o projeto, execute o comando abaixo:
 A API segue o padrão MVC, com arquivos de configuração como .gitignore e .env. Pacotes utilizados: `cors`, `dotenv-safe`, `express`, `mongoose` e `nodemon`.
 
 Estrutura do projeto: 
-
+![Estrutura API com MEN stack](https://drive.google.com/file/d/1x4QTklg7xeOge3vTDiBQlYGvIyCKAKYe/view?usp=sharing)
 
 ## Autenticação
 
