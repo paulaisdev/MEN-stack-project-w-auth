@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-# On14-TodasEmTech-s13-PG-III
-Turma Online 14 - Back-end | Projeto Guiado CRUD
-=======
->>>>>>> 5bfe75749a6f09826637cb9e794c212f01181235
 ### Vamos preparar o ambiente!
 
 Para executar este projeto, você deverá ter instalado o Node.js e as dependências do npm. Será necessário ter instalado o banco de dados Mongodb e suas configurações. Além disso, iremos fazer requisições na API com a plataforma Postman.
