@@ -78,7 +78,7 @@ const getAll = async (req, res) => {
       res.status(500).send({ message: err.message })
     }
       res.status(200).send(users)
-    }) 
+  }) 
 }
 ~~~
 
@@ -97,7 +97,7 @@ Agora sim, podemos aplicar o método verify e verificar se tudo está pegando co
 jwt.verify(token, SECRET, function(erro) {
   if (err) {
     return res.status(403).send('Não autorizado');
-  }
+}
 ~~~
 -----------------------------------------------------------------------------------------------
 ### Criar rota para criação de users
