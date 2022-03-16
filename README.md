@@ -14,6 +14,13 @@ Estrutura do projeto:
 ![Estrutura API com MEN stack](https://drive.google.com/file/d/1x4QTklg7xeOge3vTDiBQlYGvIyCKAKYe/view?usp=sharing)
 
 -----------------------------------------------------------------------------------------------
+## Autenticação
+
+Este projeto já possui rotas organizadas e integração com o banco de dados. O próximo passo agora é criar o processo de autenticação (para conferir FLUXO de autenticação, vá até o final do README).
+
+Segue as orientações
+
+-----------------------------------------------------------------------------------------------
 ### Fluxo autenticação
 
 🚩 **Criação de usuária**<br /> 
@@ -95,11 +102,6 @@ const createUser = async (req, res) => {
 `$ jwt.sign({ name: user.name }, SECRET);`
 
 -----------------------------------------------------------------------------------------------
-## Autenticação
-
-Este projeto já possui rotas organizadas e integração com o banco de dados. O próximo passo agora é criar o processo de autenticação (para conferir FLUXO de autenticação, vá até o final do README).
-
-Segue as orientações:
 
 ### Criar rota autenticada
 
