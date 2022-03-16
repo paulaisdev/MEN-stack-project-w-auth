@@ -16,16 +16,16 @@ Estrutura do projeto:
 -----------------------------------------------------------------------------------------------
 ### Fluxo autenticação
 
-🚩 **Criação de usuária**
+🚩 **Criação de usuária**<br /> 
 Uma usuária é criada e sua senha é armazenada como um hash (usando o bcrypt)
 
-🚩 **Login da usuária**
+🚩 **Login da usuária**<br /> 
 Na request de login, no body da request são enviados os dados necessários para autenticação (email e senha, por exemplo)
 
-🚩 **Autenticação da usuária**
+🚩 **Autenticação da usuária**<br /> 
 A senha é verificada com a do banco, se for igual, um token é gerado como resposta à requisição. No front, esse token é armazenado
 
-🚩 **Autorização de visualização**
+🚩 **Autorização de visualização**<br /> 
 Com o login realizado, a cada nova requisição o token é enviado no body da requisição permitindo a autorização de visualização
 
 -----------------------------------------------------------------------------------------------
