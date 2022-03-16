@@ -13,6 +13,22 @@ A API segue o padrão MVC, com arquivos de configuração como .gitignore e .env
 Estrutura do projeto: 
 ![Estrutura API com MEN stack](https://drive.google.com/file/d/1x4QTklg7xeOge3vTDiBQlYGvIyCKAKYe/view?usp=sharing)
 
+-----------------------------------------------------------------------------------------------
+### Fluxo autenticação
+
+🚩 **Criação de usuária**
+Uma usuária é criada e sua senha é armazenada como um hash (usando o bcrypt)
+
+🚩 **Login da usuária**
+Na request de login, no body da request são enviados os dados necessários para autenticação (email e senha, por exemplo)
+
+🚩 **Autenticação da usuária**
+A senha é verificada com a do banco, se for igual, um token é gerado como resposta à requisição. No front, esse token é armazenado
+
+🚩 **Autorização de visualização**
+Com o login realizado, a cada nova requisição o token é enviado no body da requisição permitindo a autorização de visualização
+
+-----------------------------------------------------------------------------------------------
 ### Criar rota para criação de users
 
 1. Criar rota para criar user em userRoute.js
@@ -144,18 +160,3 @@ jwt.verify(token, SECRET, function(erro) {
     return res.status(403).send('Não autorizado');
 }
 ~~~
------------------------------------------------------------------------------------------------
-### Fluxo autenticação
-
-🚩 **Criação de usuária**
-Uma usuária é criada e sua senha é armazenada como um hash (usando o bcrypt)
-
-🚩 **Login da usuária**
-Na request de login, no body da request são enviados os dados necessários para autenticação (email e senha, por exemplo)
-
-🚩 **Autenticação da usuária**
-A senha é verificada com a do banco, se for igual, um token é gerado como resposta à requisição. No front, esse token é armazenado
-
-🚩 **Autorização de visualização**
-Com o login realizado, a cada nova requisição o token é enviado no body da requisição permitindo a autorização de visualização
-

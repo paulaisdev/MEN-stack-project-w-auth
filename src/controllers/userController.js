@@ -1,16 +1,23 @@
 const UserSchema = require('../models/userSchema')
 const mongoose = require('mongoose')
 
+const secret = process.env.SECRET
+
 const getAll = async (req, res) => {
-    try {
-        const users = await UserSchema.find()
-        res.status(200).json(users)
-    } catch (error) {
-        res.status(500).json({
-            message: error.message,
-        })
+    const authHeader = req.get('authorization')
+    const token = authHeader.split(' ')[1];
+  
+    if (!token) {
+      return res.status(401).send("Erro no header")
     }
-}
+      
+    UserSchema.find(function (err, users) {
+      if(err) {
+        res.status(500).send({ message: err.message })
+      }
+        res.status(200).send(users)
+    }) 
+  }
 
 const createUser = async (req, res) => {
     try {
