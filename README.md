@@ -52,6 +52,28 @@ Com o login realizado, a cada nova requisição o token é enviado no body da re
 3. Gerar hash com senha recebida no body da request
 `$ bcrypt.hashSync(request.body.senha, 10);`
 
+~~~ javascript
+const createUser = async (req, res) => {
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10)
+    req.body.password = hashedPassword
+
+    const newUser = new UserSchema(req.body)
+
+    try {
+      const savedUser = await newUser.save()
+
+        res.status(200).json({
+            message: "User adicionado com sucesso!",
+            savedUser
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+}
+~~~
+
 4. Criar novo user no banco com a senha hasherizada e o login (email) recebido no body da request
 
 -----------------------------------------------------------------------------------------------
@@ -66,13 +88,11 @@ Com o login realizado, a cada nova requisição o token é enviado no body da re
 3. Comparar senha de user encontra com a senha recebida via request, e mostrar um erro 401 caso seja diferente
 `$ bcrypt.compareSync(request.body.senha, userFound.senha);`
 
-4. Fazer require do plugin JWT
+4. Fazer require do pacote JWT
 `$ const jwt = require('jsonwebtoken');`
 
 5. Importar SECRET e gerar token JWT a partir do nome e secret e devolver na request
 `$ jwt.sign({ name: user.name }, SECRET);`
-
-6. Bater na rota `getAll` via Postman com o token gerado
 
 -----------------------------------------------------------------------------------------------
 ## Autenticação
