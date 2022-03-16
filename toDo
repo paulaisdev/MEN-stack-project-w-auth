@@ -1,0 +1,21 @@
+[x] npm install
+[x] rodar o projeto
+[x] rodar mongo
+
+[x] configurar o schema no arquivo userSchema
+    [x] usuário com: name, email, password e createdAt
+
+
+[] criar primeira rota para getAll
+    [] criar controller
+    [] criar rota
+[] ! verificar se tudo que é necessário está importado no app.js
+
+[] criar rota e controller para criação
+
+[] criar rota e controller para update
+
+[] criar rota e controller para update
+
+[] autenticação
+

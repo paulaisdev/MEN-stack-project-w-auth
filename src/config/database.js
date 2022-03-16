@@ -10,7 +10,7 @@ const connect = async () => {
         })
         console.log("Banco conectado (:")
     } catch (error) {
-        console.log("Erro: ", error.message)
+        console.error("Erro: ", error.message)
     }
 }
 

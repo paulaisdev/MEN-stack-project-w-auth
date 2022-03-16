@@ -3,7 +3,7 @@ const app = express()
 const cors = require('cors')
 
 const db = require('./config/database')
-const userRoutes = require("./routes/userRoutes")
+const userRoutes = require('./routes/userRoutes')
 
 db.connect() 
 
