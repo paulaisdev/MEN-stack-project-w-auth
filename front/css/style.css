@@ -1,0 +1,53 @@
+html {
+    margin: 0;
+}
+
+body {
+    align-items: center;
+    background-color:cadetblue;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+h1 {
+    color: white;
+}
+
+.form {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    height: 300px;
+    width: 300px;
+}
+
+form {
+    margin: 50px;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-box input {
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+.button-box {
+    display: flex;
+    justify-content: end;
+}
+
+#button-send {
+    background-color: darkcyan;
+    border-radius: 10px;
+    border-style: none;
+    color: white;
+    height: 30px;
+    width: 70px;
+}
