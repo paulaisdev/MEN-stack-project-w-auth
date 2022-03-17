@@ -1,7 +1,8 @@
-const UserSchema = require('../models/userSchema')
-const mongoose = require('mongoose')
+const UserSchema = require("../models/userSchema")
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
-const secret = process.env.SECRET
+const SECRET = process.env.SECRET
 
 const getAll = async (req, res) => {
     const authHeader = req.get('authorization')
@@ -10,6 +11,12 @@ const getAll = async (req, res) => {
     if (!token) {
       return res.status(401).send("Erro no header")
     }
+
+    jwt.verify(token, SECRET, (err) => {
+        if(err) {
+            return res.status(401).send("Não autorizado")
+        }
+    })
       
     UserSchema.find(function (err, users) {
       if(err) {
@@ -20,13 +27,11 @@ const getAll = async (req, res) => {
   }
 
 const createUser = async (req, res) => {
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10)
+    req.body.password = hashedPassword
+
     try {
-        const newUser = new UserSchema({
-            _id: new mongoose.Types.ObjectId(),
-            name: req.body.name,
-            email: req.body.email,
-            createdAt: new Date()
-        })
+        const newUser = new UserSchema(req.body)
 
         const savedUser = await newUser.save()
 
