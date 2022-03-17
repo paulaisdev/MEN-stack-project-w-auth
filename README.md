@@ -136,12 +136,12 @@ mongoose.connect(process.env.MONGODB_URI,  {
 });
 ~~~
 
-7. Criar variável contendo a SECRET em userController.js
+6. Criar variável contendo a SECRET em userController.js
 `$ const secret = process.env.SECRET`
 
-8. Criar método de autenticação em `getAll`
+7. Criar método de autenticação em `getAll`
 
-9. Pegar o header de autorização e enviar uma mensagem de erro 401 quando vir vazio
+8. Pegar o header de autorização e enviar uma mensagem de erro 401 quando vir vazio
 `$ const authHeader = request.get('authorization');`
 
 ~~~javascript
@@ -162,10 +162,10 @@ const getAll = async (req, res) => {
 }
 ~~~
 
-10. Passar bearer token no header de autenticação via Postman
+9. Passar bearer token no header de autenticação via Postman
 `$ Bearer TOKEN_JWT_AQUI`
 
-11. Verificar token JWT e enviar uma mensagem de erro 403 caso seja inválido
+10. Verificar token JWT e enviar uma mensagem de erro 403 caso seja inválido
 `$ jwt.verify(token, SECRET, (error) => {...});`
 
 Antes de tudo, precisamos importar a biblioteca jwt no controller 
