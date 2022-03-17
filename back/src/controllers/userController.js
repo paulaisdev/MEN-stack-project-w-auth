@@ -5,28 +5,40 @@ const jwt = require("jsonwebtoken")
 const SECRET = process.env.SECRET
 
 const getAll = async (req, res) => {
-    const authHeader = req.get('authorization')
-    const token = authHeader.split(' ')[1];
-  
-    if (!token) {
-      return res.status(401).send("Erro no header")
+    try {
+        const allUsers = await UserSchema.find()
+        res.status(200).json(allUsers)
+    } catch (error) {
+        res.status(500).json({
+            message: error.message,
+        })
     }
+}
 
-    jwt.verify(token, SECRET, (err) => {
-        if(err) {
-            return res.status(401).send("Não autorizado")
-        }
-    })
+// const getAll = async (req, res) => {
+//     const authHeader = req.get('authorization')
+//     const token = authHeader.split(' ')[1];
+  
+//     if (!token) {
+//       return res.status(401).send("Erro no header")
+//     }
+
+//     jwt.verify(token, SECRET, (err) => {
+//         if(err) {
+//             return res.status(401).send("Não autorizado")
+//         }
+//     })
       
-    UserSchema.find(function (err, users) {
-      if(err) {
-        res.status(500).send({ message: err.message })
-      }
-        res.status(200).send(users)
-    }) 
-  }
+//     UserSchema.find(function (err, users) {
+//       if(err) {
+//         res.status(500).send({ message: err.message })
+//       }
+//         res.status(200).send(users)
+//     }) 
+//   }
 
 const createUser = async (req, res) => {
+    console.log("CHEGOU REQUISIÇÃO")
     const hashedPassword = bcrypt.hashSync(req.body.password, 10)
     req.body.password = hashedPassword
 
