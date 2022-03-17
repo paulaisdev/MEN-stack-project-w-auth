@@ -54,7 +54,7 @@ Com o login realizado, a cada nova requisição o token é enviado no body da re
 `$ npm install bcrypt`
 
 2. Fazer require do bcrypt no `usersController.js`
-`$ const bcrypt = require('bcryptjs');`
+`$ const bcrypt = require('bcrypt');`
 
 3. Gerar hash com senha recebida no body da request
 `$ bcrypt.hashSync(request.body.senha, 10);`
@@ -95,31 +95,28 @@ const createUser = async (req, res) => {
 3. Comparar senha de user encontra com a senha recebida via request, e mostrar um erro 401 caso seja diferente
 `$ bcrypt.compareSync(request.body.senha, userFound.senha);`
 
-4. Fazer require do pacote JWT
+4. Instalar "jsonwebtoken" via npm install e fazer require do pacote JWT
 `$ const jwt = require('jsonwebtoken');`
 
-5. Importar SECRET e gerar token JWT a partir do nome e secret e devolver na request
+5. Importar SECRET (passo abaixo) e gerar token JWT a partir do nome e secret e devolver na request
 `$ jwt.sign({ name: user.name }, SECRET);`
 
 -----------------------------------------------------------------------------------------------
 
 ### Criar rota autenticada
 
-1. Instalar "jsonwebtoken" via npm install
-`$ npm install jsonwebtoken`
+1. Gerar chave pelo https://travistidwell.com/jsencrypt/demo/ e guardar a chave pública
 
-2. Gerar chave pelo https://travistidwell.com/jsencrypt/demo/ e guardar a chave pública
-
-3. Instalar dotenv-safe
+2. Instalar dotenv-safe
 `$ npm install dotenv-safe`
 
-4. Criar arquivo .env.example e .env, ambos com chave chamada SECRET
+3. Criar arquivo .env.example e .env, ambos com chave chamada SECRET
 `$ SECRET=chave_rsa_aqui_sem_aspas`
 
-5. Carregar as variáveis de ambiente no projeto, no arquivo app.js
+4. Carregar as variáveis de ambiente no projeto, no arquivo app.js
 `$ require('dotenv-safe').config();`
 
-6. Depois disso, vamos recriar a String de conexão do localhost, iremos proteger nosso http://localhost... criando uma variável de ambiente chamada MONGODB_URI, que ficará dentro do arquivo `.env`.
+5. Depois disso, vamos recriar a String de conexão do localhost, iremos proteger nosso http://localhost... criando uma variável de ambiente chamada MONGODB_URI, que ficará dentro do arquivo `.env`.
 
 Dentro do arquivo `.env`ficará:
 
