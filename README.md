@@ -16,7 +16,7 @@ Estrutura do projeto:
 -----------------------------------------------------------------------------------------------
 ## Autenticação
 
-Este projeto já possui rotas organizadas e integração com o banco de dados. O próximo passo agora é criar o processo de autenticação (para conferir FLUXO de autenticação, vá até o final do README).
+Este projeto já possui rotas organizadas e integração com o banco de dados. O próximo passo agora é criar o processo de autenticação (conferia o fluxo de autenticação logo abaixo).
 
 Segue as orientações
 
