@@ -1,9 +1,9 @@
-[x] npm install
-[x] rodar o projeto
-[x] rodar mongo
+[] npm install
+[] rodar o projeto
+[] rodar mongo
 
-[x] configurar o schema no arquivo userSchema
-    [x] usuário com: name, email, password e createdAt
+[] configurar o schema no arquivo userSchema
+    [] usuário com: name, email, password e createdAt
 
 
 [] criar primeira rota para getAll
