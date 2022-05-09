@@ -126,6 +126,14 @@ const createUser = async (req, res) => {
   const token = jwt.sign({ name: user.name }, SECRET)
 ~~~
 
+6. Enviar uma resposta para a requisição
+
+~~~ javascript
+    res.status(200).send({
+        message: "Login autorizado",
+        token
+    })
+~~~
 -----------------------------------------------------------------------------------------------
 
 ### Criar rota autenticada
