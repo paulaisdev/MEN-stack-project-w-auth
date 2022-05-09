@@ -89,17 +89,42 @@ const createUser = async (req, res) => {
 1. Criar rota de login em `userRoute.js`
 `$ router.post('/login', controller.login);`
 
-2. Buscar user a partir do email recebido na request, e mostrar um erro 404 caso não encontre
+2. Buscar user a partir do email recebido na request, e mostrar um erro 401 caso não encontre
 `$ userSchema.findOne({ email: req.body.email }, function(error, user) {...}`
+
+~~~ javascript
+  UserSchema.findOne({ email: req.body.email }, (error, user) => {
+      if(!user) {
+          return res.status(401).send({
+              message: "User não encontrado",
+              email: `${req.body.email}`
+          })
+      }
+  })
+~~~
 
 3. Comparar senha de user encontra com a senha recebida via request, e mostrar um erro 401 caso seja diferente
 `$ bcrypt.compareSync(request.body.senha, userFound.senha);`
+
+~~~ javascript
+  const validPassword = bcrypt.compareSync(req.body.password, user.password)
+
+  if(!validPassword) {
+    return res.status(401).send({
+        message: "Login não autorizado"
+    })
+  }
+~~~ 
 
 4. Instalar "jsonwebtoken" via npm install e fazer require do pacote JWT
 `$ const jwt = require('jsonwebtoken');`
 
 5. Importar SECRET (passo abaixo) e gerar token JWT a partir do nome e secret e devolver na request
 `$ jwt.sign({ name: user.name }, SECRET);`
+
+~~~ javascript
+  const token = jwt.sign({ name: user.name }, SECRET)
+~~~
 
 -----------------------------------------------------------------------------------------------
 
