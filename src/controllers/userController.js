@@ -1,4 +1,4 @@
-const UserSchema = require("../models/userSchema")
+const UserSchema = require("../models/userSchema");
 
 const getAll = async (req, res) => {
   UserSchema.find(function (err, users) {
@@ -7,9 +7,8 @@ const getAll = async (req, res) => {
     }
       res.status(200).send(users)
   }) 
-}
-
+};
 
 module.exports = {
   getAll
-}
+};

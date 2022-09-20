@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
@@ -18,6 +18,6 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: new Date()
     }
-})
+});
 
-module.exports = mongoose.model('user', userSchema)
+module.exports = mongoose.model('user', userSchema);
