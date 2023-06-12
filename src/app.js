@@ -1,17 +1,15 @@
-const express = require("express");
+import express from "express";
 const app = express();
 
-const cors = require("cors");
+import cors from "cors";
 app.use(cors());
-
-require("dotenv-safe").config();
 
 app.use(express.json());
 
-const db = require("./config/database");
+import db from "./config/database";
 db.connect();
 
-const userRoutes = require("./routes/userRoutes");
+import userRoutes from "./routes/userRoutes";
 app.use("/users", userRoutes);
 
-module.exports = app;
+export default app;
