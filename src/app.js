@@ -9,7 +9,7 @@ app.use(express.json());
 import db from "./config/database.js";
 db.connect();
 
-import userRoutes from "./routes/userRoutes";
+import userRoutes from "./routes/userRoutes.js";
 app.use("/users", userRoutes);
 
 export default app;
