@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Para executar este projeto, você deverá ter instalado o Node.js e as dependências do npm. Será necessário ter instalado o banco de dados Mongodb e suas configurações. Além disso, iremos fazer requisições na API com a plataforma Postman.",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node -r dotenv-safe/config server.js",
+    "dev": "nodemon -r dotenv-safe/config server.js"
+
   },
   "repository": {
     "type": "git",
